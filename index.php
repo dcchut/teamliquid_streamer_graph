@@ -4,12 +4,13 @@
 // by dcchut dcc.nitrated.net
 
 // our local files
-$streamFile = '.streams';
-$lockFile   = '.lock';
-
-$lockHandle = fopen($lockFile, "r+");
+$streamFile = '/tmp/peweb.streams';
+$lockFile   = '/tmp/peweb.lock';
 
 // lock to prevent weird shit
+touch($lockFile);
+$lockHandle = fopen($lockFile, "r+");
+
 if (flock($lockHandle, LOCK_EX)) {
 	if (!file_exists($streamFile)) {
 		touch($streamFile, time() - 60);
@@ -17,12 +18,13 @@ if (flock($lockHandle, LOCK_EX)) {
 
 	// data is old, so update it
 	if (time() - filemtime($streamFile) > 30) {
-		$streamHandle = popen("python getStreamersJSON.py", "r");
-		file_put_contents($streamFile, stream_get_contents($streamHandle);
-		pclose($streamHandle);
+		$sh = popen('./getStreamersJSON.py', 'r');
+		file_put_contents($streamFile,
+				    stream_get_contents($sh));
+		pclose($sh);
 	}
 	
-	// display the data, die
+	// display the data
 	echo file_get_contents($streamFile);
 	
 	flock($lockHandle, LOCK_UN);
