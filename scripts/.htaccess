@@ -1,1 +1,2 @@
+# prevent web access to this folder
 deny from all
