@@ -18,7 +18,7 @@ if (flock($lockHandle, LOCK_EX)) {
 
 	// data is old, so update it
 	if (time() - filemtime($streamFile) > 30) {
-		$sh = popen('./getStreamersJSON.py', 'r');
+		$sh = popen('./scripts/getStreamersJSON.py', 'r');
 		file_put_contents($streamFile,
 				    stream_get_contents($sh));
 		pclose($sh);
