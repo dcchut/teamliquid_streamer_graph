@@ -1,0 +1,1 @@
+peweb=========A simple collection of scripts (being worked on) which grabs TeamLiquidstream data and store it in a convenient format.  I have hosted a simplescript which retrieves this data periodically and makes it available over the web. [.hosted](http://pe.nitrated.net/) -- hosted version of `peweb`[.contact](http://dcc.nitrated.net/) -- my personal site
