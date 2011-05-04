@@ -43,11 +43,13 @@ class Streamers(object):
 	
 			for td in tr.cssselect('td'):
 				if tr_user == '':
+
 					# get the link hopefully
 					for link in td.cssselect('a'):
 						tr_link += link.get('href')
-						
-					tr_user = td.text_content()
+						tr_user = link.text_content()
+						break
+
 				else:
 					if tr_stage == 2:
 						tr_viewers = td.text_content()
