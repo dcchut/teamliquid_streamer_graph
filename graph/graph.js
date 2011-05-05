@@ -1,0 +1,91 @@
+$(function() {
+        var data = [];
+        var options =   {
+                            grid: {
+                                backgroundColor: { colors: ["#fff", "#eee"] },
+                                hoverable: true
+                            },
+                            legend: {
+                                position: "nw"
+                            }
+                        };
+        var graph = $("#graph");
+        var updateInterval = 35000;
+        var plot = $.plot(graph, data, options);
+
+        function showTooltip(x, y, contents) {
+            $('<div id="tooltip">' + contents + '</div>').css({
+                position: 'absolute',
+                display: 'none',
+                top: y + 5,
+                left: x + 5,
+                border: '1px solid #fdd',
+                padding: '2px',
+                'background-color': '#fee',
+                opacity: 0.80
+            }).appendTo("body").fadeIn(200);
+        }
+        
+        var previousPoint = null;
+        graph.bind("plothover", function(event, pos, item){
+            if (item){
+                if (previousPoint != item.dataIndex){
+                    previousPoint = item.dataIndex;
+                    
+                    $("#tooltip").remove();
+                    var x = item.datapoint[0].toFixed(0),
+                        y = item.datapoint[1].toFixed(0);
+                
+                    showTooltip(item.pageX, item.pageY, 
+                                item.series.label + ' (' + x + ', ' + y + ')');
+                }
+            } else {
+                $("#tooltip").remove();
+                previousPoint = null;
+            }
+        });
+        
+        var alreadyFetched = {};
+        var a2 = {}
+        var counter = 0;
+        var fetchedTime = 0;
+        var fetchedTimeM = 0;
+
+        function doUpdate(series){
+            // get the u value first
+            fetchedTime = series[0].u;
+            if (fetchedTimeM == 0){
+        fetchedTimeM = series[0].m;
+      }
+            // get the rest of the data?
+            for (i=1;i<series.length;i++){
+                if (series[i].length == 0){
+                    continue;
+                }
+                
+                if (!a2[series[i].label]){
+                    a2[series[i].label] = true;
+                    alreadyFetched[series[i].label] = counter;
+                    counter++;
+                    data.push(series[i]);
+                } else {
+                    // magic exists
+                    data[alreadyFetched[series[i].label]].data = data[alreadyFetched[series[i].label]].data.concat(series[i].data);
+                }
+            }
+            $.plot(graph, data, options);
+            setTimeout(update, updateInterval);
+        }
+        
+        function update(){
+            $.ajax({
+                url: "data.php",
+                method: 'GET',
+                data: "u="+fetchedTime+"&m="+fetchedTimeM,
+                dataType: 'json',
+                success: doUpdate});
+        }
+        
+        update();
+        
+});
