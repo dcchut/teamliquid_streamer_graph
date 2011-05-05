@@ -55,8 +55,12 @@ $(function() {
             // get the u value first
             fetchedTime = series[0].u;
             if (fetchedTimeM == 0){
-        fetchedTimeM = series[0].m;
-      }
+		        fetchedTimeM = series[0].m;
+      		
+				var	timeD = new Date(fetchedTimeM * 1000);
+				$("#time").text(timeD.getHours() + ":" + timeD.getMinutes() + " AEST");
+			}
+
             // get the rest of the data?
             for (i=1;i<series.length;i++){
                 if (series[i].length == 0){

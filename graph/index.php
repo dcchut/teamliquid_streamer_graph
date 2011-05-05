@@ -11,7 +11,7 @@
 	<div id="main">
     <b>teamliquid streamer graph</b> - presented by dcchut<br /><br />
     <div id="graph" style="width:1500px;height:700px;"></div><br />
-    <a href="http://dcc.nitrated.net/">my bio</a></div>
+    graph origin is <span id="time"></span> - <a href="http://dcc.nitrated.net/">my bio</a></div>
     <script type="text/javascript">
 		setTimeout("location.reload(true);", 3600 * 1000);
 	</script>
