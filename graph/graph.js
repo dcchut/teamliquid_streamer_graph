@@ -37,7 +37,7 @@ $(function() {
                         y = item.datapoint[1].toFixed(0);
                 
                     showTooltip(item.pageX, item.pageY, 
-                                item.series.label + ' (' + x + ', ' + y + ')');
+                                item.series.label + ' (' + getTime(fetchedTimeM + 60*x) + ', ' + y + ')');
                 }
             } else {
                 $("#tooltip").remove();

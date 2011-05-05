@@ -2,7 +2,7 @@
 
 $dataDirectory = '/home/dcc/pelogger/rdata/';
 
-$threshold = 250;
+$threshold = 500;
 $data = array();
 $mints = FALSE;  // minimum timestamp
 $maxts = FALSE;  // maximum timestamp
