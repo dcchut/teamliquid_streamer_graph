@@ -7,7 +7,7 @@ $(function() {
                             },
                             legend: {
                                 position: "nw"
-                            }
+                            },
                         };
         var graph = $("#graph");
         var updateInterval = 35000;
