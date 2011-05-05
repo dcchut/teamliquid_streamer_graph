@@ -51,15 +51,31 @@ $(function() {
         var fetchedTime = 0;
         var fetchedTimeM = 0;
 
+		function pad2(n){
+			return (n < 10 ? '0' : '') + n;
+		}
+
+		function getTime(timestamp){
+			d = new Date(timestamp * 1000)
+			return d.getHours() + ":" + pad2(d.getMinutes());
+		}
+		
+		function tf(val, axis){
+			// val contains number of minutes past 0 time
+			return getTime(fetchedTimeM + val*60);
+		}
+
         function doUpdate(series){
             // get the u value first
             fetchedTime = series[0].u;
             if (fetchedTimeM == 0){
 		        fetchedTimeM = series[0].m;
-      		
-				var	timeD = new Date(fetchedTimeM * 1000);
-				$("#time").text(timeD.getHours() + ":" + timeD.getMinutes() + " AEST");
 			}
+
+			// construct our ticks
+			options.xaxis = {
+								tickFormatter: tf
+							};
 
             // get the rest of the data?
             for (i=1;i<series.length;i++){
