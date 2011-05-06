@@ -6,7 +6,7 @@ $(function() {
                                 hoverable: true
                             },
                             legend: {
-                                position: "nw"
+                                position: "nw",
                             },
                         };
         var graph = $("#graph");
@@ -57,7 +57,7 @@ $(function() {
 
 		function getTime(timestamp){
 			d = new Date(timestamp * 1000)
-			return d.getHours() + ":" + pad2(d.getMinutes());
+			return pad2(d.getHours()) + ":" + pad2(d.getMinutes());
 		}
 		
 		function tf(val, axis){
@@ -93,6 +93,11 @@ $(function() {
                     data[alreadyFetched[series[i].label]].data = data[alreadyFetched[series[i].label]].data.concat(series[i].data);
                 }
             }
+			
+			if (counter > 10){
+				options.legend.noColumns = 2;
+			}
+
             $.plot(graph, data, options);
             setTimeout(update, updateInterval);
         }
