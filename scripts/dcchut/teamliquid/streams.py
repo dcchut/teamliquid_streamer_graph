@@ -25,7 +25,7 @@ class Streamers(object):
   def __parseTLStreamsPage(self, url, featured_only):
     # lxml dies on some of the characters used, so kill them
     TL = urllib.urlopen(url).read()
-    TL = TL.decode('UTF-8').encode('charmap', 'ignore')
+    TL = TL.decode('UTF-8', 'ignore').encode('charmap', 'ignore')
     
     # only want FEATURED streams!
     if featured_only is True:
