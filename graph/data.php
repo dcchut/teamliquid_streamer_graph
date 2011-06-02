@@ -2,7 +2,9 @@
 
 $dataDirectory = '/home/dcc/pelogger/rdata/';
 
-$threshold = 1000;
+$threshold = 1; // 1000;
+							  // since our new data uses featured streamers
+								// just ignore this for now!
 $data = array();
 $mints = FALSE;  // minimum timestamp
 $maxts = FALSE;  // maximum timestamp
