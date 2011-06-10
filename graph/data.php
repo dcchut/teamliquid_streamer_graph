@@ -80,7 +80,7 @@ foreach ($data as $user => $v){
     // is this user worth plotting?
     if ($bound == 0 && max($v) < $threshold){
         continue;
-    } else if ($bound == 1 && mas($v) > $threshold){
+    } else if ($bound == 1 && max($v) > $threshold){
         continue;
     }
     
