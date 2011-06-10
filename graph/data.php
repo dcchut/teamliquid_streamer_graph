@@ -74,16 +74,17 @@ $output = "[{\"u\" : ". $maxts . ", \"m\" : " . $m . "},\n";
 foreach ($data as $user => $v){
     $o = array();
     $l = 0;
-    
+
     // is this user worth plotting?
     if (max($v) > $max || max($v) < $min) {
         continue;
     }
-    
+  
     foreach ($v as $time => $viewers){
         if ($time <= $u){
             continue;
         }
+    
         // dont want to draw a continuous curve if they stop streaming and start again
         if ($l > 0 && ( (($time - $l) > 0.05 * $maxgap && $u == 0) || ($time - $l) > 0.05 * ($u - $m) && $u != 0)) {
             $o[] = null;
