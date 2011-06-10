@@ -111,15 +111,6 @@ $(function() {
 			if (counter > 10){
 				options.legend.noColumns = 2;
 			}
-          // do the approximation rubbish!
-          approxdata = [];
-          
-          for (i=0;i<data.length;i++){
-            approxdata[i] = {
-                             label: data[i].label, 
-                             data: data[i].slice(0)};
-          }
-         
             $.plot(graph, data, options);
             setTimeout(update, updateInterval);
       }
