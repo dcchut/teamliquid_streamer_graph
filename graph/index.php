@@ -9,9 +9,9 @@
     </head>
     <body>
 	<div id="main">
-    <b>teamliquid featured streamers graph</b> - presented by <a href="http://dcc.nitrated.net">dcchut</a><br /><br />
+    <b><a href="./">teamliquid featured streamers graph</a></b> - presented by <a href="http://dcc.nitrated.net">dcchut</a><br /><br />
     <div id="graph" style="width:1500px;height:700px;"></div><br />
-    all times expressed in AEST - graph updates every 35 seconds<br />
+    all times expressed in AEST - graph updates every 35 seconds<br /><br />
     check out the <a href="./?max=2000">low popularity streams</a> 
     and the <a href="./?min=2000">high popularity streams</a>.</div>
     <script type="text/javascript">
