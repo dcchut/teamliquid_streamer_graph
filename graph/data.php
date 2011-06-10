@@ -12,6 +12,10 @@ $gc = function($key){
 $min = (int)$gc('min');
 $max = (int)$gc('max');
 
+if ($max == 0) { // no max defined
+    $max = 100000;
+}
+
 // default bound is 0 (need viewers > threshold)
 // other is 1 (need viewers < threshold)
 $bound = (int)$gs('bound');
