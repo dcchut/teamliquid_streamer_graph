@@ -1,24 +1,3 @@
-<?php
-session_start();
-
-$gc = function($key) use ($_GET){
-  if (!array_key_exists($key, $_GET)) {
-    return FALSE;
-  } else {
-    return $_GET[$key];
-  }
-};
-
-// save the threshold & bound variables
-if ($t = $gc('t')) {
-  $_SESSION['threshold'] = $t;
-}
-
-if ($b = $gc('b')) {
-  $_SESSION['bound'] = $b;
-}
-
-?>
 <html>
     <head>
         <title>teamliquid featured streamers graph</title>

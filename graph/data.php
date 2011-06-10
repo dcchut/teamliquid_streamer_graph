@@ -1,18 +1,16 @@
 <?php
-session_start();
 $dataDirectory = '/home/dcc/pelogger/rdata/';
 
-$gs = function($key){
-  if (!array_key_exists($key, $_SESSION)) {
+$gc = function($key){
+  if (!array_key_exists($key, $_GET)) {
     return FALSE;
   } else {
-    return $_SESSION[$key];
+    return $_GET[$key];
   }
 };
 
-if (!($threshold = (int)$gs('threshold'))) {
-  $threshold = 1;
-}
+$min = (int)$gc('min');
+$max = (int)$gc('max');
 
 // default bound is 0 (need viewers > threshold)
 // other is 1 (need viewers < threshold)
@@ -78,9 +76,7 @@ foreach ($data as $user => $v){
     $l = 0;
     
     // is this user worth plotting?
-    if ($bound == 0 && max($v) < $threshold){
-        continue;
-    } else if ($bound == 1 && max($v) > $threshold){
+    if (max($v) > $max || min($v) < $min) {
         continue;
     }
     
