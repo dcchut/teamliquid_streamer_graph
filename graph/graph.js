@@ -115,8 +115,9 @@ $(function() {
           approxdata = [];
           
           for (i=0;i<data.length;i++){
-            approxdata[i] = { label: data[i].label,
-                              data: data[i].slice(0) };
+            approxdata[i] = {
+                             label: data[i].label, 
+                             data: data[i].slice(0)};
           }
          
             $.plot(graph, data, options);
