@@ -4,7 +4,6 @@
         <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="./flot/excanvas.min.js"></script><![endif]-->
         <script language="javascript" type="text/javascript" src="./flot/jquery.js"></script>
         <script language="javascript" type="text/javascript" src="./flot/jquery.flot.js"></script>
-        <script language="javascript" type="text/javascript" src="./flot/approximation.js"></script>
 	 <script language="javascript" type="text/javascript" src="./graph.js"></script>
 	 <link rel="stylesheet" type="text/css" href="./style.css" />
     </head>
