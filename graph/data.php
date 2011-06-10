@@ -1,10 +1,23 @@
 <?php
-
+session_start();
 $dataDirectory = '/home/dcc/pelogger/rdata/';
 
-$threshold = 1; // 1000;
-							  // since our new data uses featured streamers
-								// just ignore this for now!
+$gs = function($key){
+  if (!array_key_exists($key, $_SESSION)) {
+    return FALSE;
+  } else {
+    return $_SESSION[$key];
+  }
+};
+
+if (!($threshold = (int)$gs('threshold'))) {
+  $threshold = 1;
+}
+
+// default bound is 0 (need viewers > threshold)
+// other is 1 (need viewers < threshold)
+$bound = (int)$gs('bound');
+
 $data = array();
 $mints = FALSE;  // minimum timestamp
 $maxts = FALSE;  // maximum timestamp
@@ -65,7 +78,9 @@ foreach ($data as $user => $v){
     $l = 0;
     
     // is this user worth plotting?
-    if (max($v) < $threshold){
+    if ($bound == 0 && max($v) < $threshold){
+        continue;
+    } else if ($bound == 1 && mas($v) > $threshold){
         continue;
     }
     
@@ -73,7 +88,7 @@ foreach ($data as $user => $v){
         if ($time <= $u){
             continue;
         }
-	 // dont want to draw a continuous curve if they stop streaming and start again
+        // dont want to draw a continuous curve if they stop streaming and start again
         if ($l > 0 && ( (($time - $l) > 0.05 * $maxgap && $u == 0) || ($time - $l) > 0.05 * ($u - $m) && $u != 0)) {
             $o[] = null;
         }
