@@ -9,7 +9,7 @@
     </head>
     <body>
 	<div id="main">
-    <b>teamliquid featured streamers graph</a></b> - presented by <a href="http://dcc.nitrated.net">dcchut</a> - modes <a href="./">all</a> - <a href="./?min=2000">&gt; 2000</a> - <a href="./?max=2000">&lt; 2000</a><br /><br />
+    <b>teamliquid featured streamers graph</a></b> - presented by <a href="http://dcc.nitrated.net">dcchut</a> - <b>modes</b>: <a href="./">all</a> - <a href="./?min=2000">&gt; 2000</a> - <a href="./?max=2000">&lt; 2000</a><br /><br />
     <div id="graph" style="width:1500px;height:700px;"></div><br />
     all times expressed in AEST - graph updates every 35 seconds</div>
     <script type="text/javascript">
