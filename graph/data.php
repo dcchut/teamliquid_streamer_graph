@@ -79,6 +79,8 @@ foreach ($data as $user => $v){
     if (max($v) > $max || max($v) < $min) {
         continue;
     }
+
+		$last = -1;
   
     foreach ($v as $time => $viewers){
         if ($time <= $u){
@@ -90,7 +92,12 @@ foreach ($data as $user => $v){
             $o[] = null;
         }
 
-        $o[] = array(((int)$time - $m)/60,$viewers);
+				if ($viewers == $last) { continue; }
+
+				$o[] = array(((int)$time - $m)/60,$viewers);
+
+				$last = $viewers;
+
         $l = $time;
     }
     $output .= "{\"label\":\"". stripslashes($user) . "\"\n, \"data\": " . json_encode($o)."}\n,";
