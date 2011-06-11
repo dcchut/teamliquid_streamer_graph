@@ -122,7 +122,7 @@ $(function() {
     
     function update(){
         $.ajax({
-            url: "data.php",
+            url: "/graph/data.php",
             method: 'GET',
             data: "u="+fetchedTime+"&m="+fetchedTimeM+"&min=" + document.$_GET['min'] + "&max=" + document.$_GET['max'],
             dataType: 'json',
