@@ -1,6 +1,6 @@
 # parse the TL streamers page
 # and present the output in a nice format
-import urllib, json
+import json
 from lxml import etree
 from operator import attrgetter
 
