@@ -13,7 +13,7 @@
     <div id="graph" style="width:1500px;height:700px;"></div><br />
     all times expressed in AEST - graph updates every 70 seconds</div>
     <script type="text/javascript">
-		setTimeout("location.reload(true);", 120 * 1000);
+		setTimeout("location.reload(true);", 10 * 60 * 1000);
 	</script>
 	</body>
 </html>
