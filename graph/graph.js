@@ -22,6 +22,13 @@ $(function() {
                         legend: {
                             position: "nw",
                         },
+												points: {
+														show: true,
+														radius: 2.05,
+												},
+												lines: {
+														show: true,
+												},
                     };
     var graph = $("#graph");
     var updateInterval = 35000;
