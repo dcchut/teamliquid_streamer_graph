@@ -31,7 +31,7 @@ $(function() {
                         },
                     };
     var graph = $("#graph");
-    var updateInterval = 5000;
+    var updateInterval = 35000;
     var plot = $.plot(graph, data, options);
 
     function showTooltip(x, y, contents) {
@@ -108,15 +108,21 @@ $(function() {
                 counter++;
                 data.push(series[i]);
             } else {
-                var afk = alreadyFetched[series[i].label];
-                
-                if (series[i].data.length > 0 && series[i].data[0][0] == data[afk].data[data[afk].data.length - 1][0]) {
-                    alert('magic popcorn!' + afk);
-                }
-                
-                // magic exists
+								afk = alreadyFetched[series[i].label];
+
+								// remove the last data point until they dont match
+                while (series[i].data.length > 0 && data[afk].data.length > 0) {
+									if (series[i].data[series[i].data.length - 1][1] == data[afk].data[data[afk].data.length - 1][1]) {
+										// don't want that data point
+										series[i].data.pop();
+									} else {
+										break;
+									}
+								}
+
+								// magic exists
                 data[alreadyFetched[series[i].label]].data = data[alreadyFetched[series[i].label]].data.concat(series[i].data);
-            }
+					  }
         }
         
         if (counter > 10){

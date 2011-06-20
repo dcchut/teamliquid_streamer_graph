@@ -76,7 +76,7 @@ foreach ($data as $user => $v){
     $l = 0;
 
     // is this user worth plotting?
-    if (max($v) > $max || max($v) < $min) {
+    if (max($v) < 10 || max($v) > $max || max($v) < $min) {
         continue;
     }
 
