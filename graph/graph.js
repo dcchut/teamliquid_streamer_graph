@@ -22,16 +22,16 @@ $(function() {
                         legend: {
                             position: "nw",
                         },
-												points: {
-														show: true,
-														radius: 2.05,
-												},
-												lines: {
-														show: true,
-												},
+                        points: {
+                                show: true,
+                                radius: 2.05,
+                        },
+                        lines: {
+                                show: true,
+                        },
                     };
     var graph = $("#graph");
-    var updateInterval = 70000;
+    var updateInterval = 5000;
     var plot = $.plot(graph, data, options);
 
     function showTooltip(x, y, contents) {
@@ -108,6 +108,12 @@ $(function() {
                 counter++;
                 data.push(series[i]);
             } else {
+                var afk = alreadyFetched[series[i].label];
+                
+                if (series[i].data[0][0] == data[afk].data[data[afk].data.length - 1][0]) {
+                    alert('magic popcorn!' + afk);
+                }
+                
                 // magic exists
                 data[alreadyFetched[series[i].label]].data = data[alreadyFetched[series[i].label]].data.concat(series[i].data);
             }
