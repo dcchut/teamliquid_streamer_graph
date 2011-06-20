@@ -14,8 +14,7 @@
 
 $(function() {
     var data = [];
-    var options =   {
-                        grid: {
+    var options =   {   grid: {
                             backgroundColor: { colors: ["#fff", "#eee"] },
                             hoverable: true
                         },
@@ -108,21 +107,21 @@ $(function() {
                 counter++;
                 data.push(series[i]);
             } else {
-								afk = alreadyFetched[series[i].label];
+                afk = alreadyFetched[series[i].label];
 
-								// remove the last data point until they dont match
+                // remove the last data point until they dont match
                 while (series[i].data.length > 0 && data[afk].data.length > 0) {
-									if (series[i].data[series[i].data.length - 1][1] == data[afk].data[data[afk].data.length - 1][1]) {
-										// don't want that data point
-										series[i].data.pop();
-									} else {
-										break;
-									}
-								}
+                    if (series[i].data[series[i].data.length - 1][1] == data[afk].data[data[afk].data.length - 1][1]) {
+                        // don't want that data point
+                        series[i].data.pop();
+                    } else {
+                        break;
+                    }
+                }
 
-								// magic exists
+                // magic exists
                 data[alreadyFetched[series[i].label]].data = data[alreadyFetched[series[i].label]].data.concat(series[i].data);
-					  }
+            }
         }
         
         if (counter > 10){
