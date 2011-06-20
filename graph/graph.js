@@ -110,7 +110,7 @@ $(function() {
             } else {
                 var afk = alreadyFetched[series[i].label];
                 
-                if (series[i].data[0][0] == data[afk].data[data[afk].data.length - 1][0]) {
+                if (series[i].data.length > 0 && series[i].data[0][0] == data[afk].data[data[afk].data.length - 1][0]) {
                     alert('magic popcorn!' + afk);
                 }
                 
