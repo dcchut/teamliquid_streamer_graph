@@ -38,7 +38,7 @@ class Streamers(object):
     buffer = StringIO(response.read())
     stream_data = GzipFile(fileobj=buffer).read()
     
-    for e in etree.fromstring(stream_data).getroot().iter('stream'):
+    for e in etree.fromstring(stream_data).iter('stream'):
         # only get featured streams in this case
         if featured_only and int(e.get('featured')) != 1:
             continue
