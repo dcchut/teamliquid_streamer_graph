@@ -3,6 +3,9 @@
 import json
 from lxml import etree
 from operator import attrgetter
+import urllib2
+from StringIO import StringIO
+from gzip import GzipFile
 
 class Stream(object):
   class Encoder(json.JSONEncoder):
@@ -25,7 +28,17 @@ class Streamers(object):
   def __parseStreamers(self, url, featured_only):
     streamers = []
     
-    for e in etree.parse(url).getroot().iter('stream'):
+    # get the stream data
+    headers = {'User-Agent' : 'teamliquid featured streamers graph; http://pe.nitrated.net',
+               'Accept-Encoding': 'gzip'}
+       
+    request  = urllib2.Request(url, headers=headers)
+    response = urllib2.urlopen(request)
+    
+    buffer = StringIO(response.read())
+    stream_data = GzipFile(fileobj=buffer).read()
+    
+    for e in etree.fromstring(stream_data).getroot().iter('stream'):
         # only get featured streams in this case
         if featured_only and int(e.get('featured')) != 1:
             continue
