@@ -30,7 +30,7 @@ $(function() {
                         },
                     };
     var graph = $("#graph");
-    var updateInterval = 35000;
+    var updateInterval = 200000;
     var plot = $.plot(graph, data, options);
 
     function showTooltip(x, y, contents) {
